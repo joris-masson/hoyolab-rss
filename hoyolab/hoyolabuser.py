@@ -1,14 +1,17 @@
 from selenium.webdriver.common.by import By
 
-from hoyolabpost import HoyolabPost
+from hoyolab.hoyolabpost import HoyolabPost
 from scrapping.hoyolabscrapper import initialize_driver
 
 
 class HoyolabUser:
     def __init__(self, user_id: int):
         self.__user_id: int = user_id
-        self.__name: str
+        self.__name: str = ""  # TODO récupérer le nom d'utilisateur
         self.__last_posts: list[HoyolabPost] = self.get_last_posts()
+
+    def get_name(self) -> str:
+        return self.__name
 
     def get_url(self):
         return f"https://www.hoyolab.com/accountCenter/postList?id={self.__user_id}"
